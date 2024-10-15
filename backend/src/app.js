@@ -10,12 +10,16 @@ import cors from "cors";
 import userRoutes from "./routes/users.routes.js";
 
 const app = express();
+
+app.use(cors({
+    origin: 'https://full-stack-video-call-website-frontend.onrender.com',
+    credentials: true,
+}));
+
 const server = createServer(app);
 const io = connectToSocket(server);
 
-app.use(cors({
-    origin: "https://full-stack-video-call-website.onrender.com"
-}));
+
 
 app.set("port", (process.env.PORT || 8000))
 app.use(express.json({limit: "40kb"}));
